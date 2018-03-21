@@ -20,7 +20,7 @@
 -------------------------------------------------------------------------------
 ----Author: Mahmoud Khaled Nasr -----------------------------------------------
 ----Email: mahmoud.k.nasr@gmail.com -------------------------------------------
-----Objective: Apertus PWM Chip task -----------------------------------------------
+----Objective: Apertus PWM Chip task ------------------------------------------
 ----File Name: PWM_Chip -------------------------------------------------------
 -------------------------------------------------------------------------------  
 
@@ -35,7 +35,8 @@ entity PWM_Module is
 	);
 	port (
 		PWM_ENABLE : in std_logic;
-		DUTY_CYCLE : in std_logic_vector (8*PWM_BUFFER_BYTE_SIZE - 1 downto 0);
+		DUTY_CYCLE : in std_logic_vector 
+			(8*PWM_BUFFER_BYTE_SIZE - 1 downto 0);
 		PWM_SIGNAL : out std_logic
 	);
 end PWM_Module;
@@ -74,10 +75,14 @@ begin
 		elsif writing_conditions and high_counter /= ZERO_COUNTER then
 			high_counter <= high_counter - '1';
 			PWM_SIGNAL <= '1';
-		elsif writing_conditions and high_counter = ZERO_COUNTER and low_counter /= ZERO_COUNTER then
+		elsif writing_conditions and high_counter = ZERO_COUNTER 
+			and low_counter /= ZERO_COUNTER then
+			
 			low_counter <= low_counter - '1';
 			PWM_SIGNAL <= '0';
-		elsif writing_conditions and high_counter = ZERO_COUNTER and low_counter = ZERO_COUNTER then
+		elsif writing_conditions and high_counter = ZERO_COUNTER 
+			and low_counter = ZERO_COUNTER then
+			
 			high_counter <= DUTY_CYCLE;
 			low_counter <= 2 ** PWM_BUFFER_BIT_SIZE - DUTY_CYCLE;
 		end if;

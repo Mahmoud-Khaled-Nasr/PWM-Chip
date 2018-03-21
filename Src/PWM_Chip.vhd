@@ -20,7 +20,7 @@
 -------------------------------------------------------------------------------
 ----Author: Mahmoud Khaled Nasr -----------------------------------------------
 ----Email: mahmoud.k.nasr@gmail.com -------------------------------------------
-----Objective: Apertus PWM Chip task -----------------------------------------------
+----Objective: Apertus PWM Chip task ------------------------------------------
 ----File Name: PWM_Chip -------------------------------------------------------
 -------------------------------------------------------------------------------  
 
@@ -68,7 +68,8 @@ architecture PWM_Chip_Arch of PWM_Chip is
 	end component PWM_Module;
 	
 	signal pwm_enable_signal : std_logic;
-	signal i2c_data_out : std_logic_vector (PWM_BUFFER_BYTE_SIZE * 8 - 1 downto 0);
+	signal i2c_data_out : std_logic_vector 
+		(PWM_BUFFER_BYTE_SIZE * 8 - 1 downto 0);
 begin
 	I2C : i2c_Interface_Module 
 		generic map (PWM_BUFFER_BYTE_SIZE => PWM_BUFFER_BYTE_SIZE)
